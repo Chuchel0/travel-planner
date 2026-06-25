@@ -11,6 +11,7 @@ A CRUD application for managing travel projects and places, built with FastAPI a
 - Validation to prevent duplicate places in a project
 - Limit of 10 places per project
 - Cannot delete projects with visited places
+- Caching of third-party API responses to reduce external calls
 
 ## Requirements
 

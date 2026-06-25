@@ -1,6 +1,7 @@
 import requests
 from typing import Optional, Dict, Any
 import logging
+from functools import lru_cache
 
 logger = logging.getLogger(__name__)
 
@@ -37,6 +38,7 @@ class ArtInstituteService:
             logger.error(f"Error fetching artwork {artwork_id}: {e}")
             return None
 
+    @lru_cache(maxsize=128)
     def validate_place_exists(self, external_api_id: str) -> bool:
         """Validate that a place (artwork) exists in the Art Institute API"""
         try:
@@ -44,3 +46,7 @@ class ArtInstituteService:
             return response.status_code == 200
         except requests.RequestException:
             return False
+
+
+# Singleton instance for use across the application
+art_institute_service = ArtInstituteService()

@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import and_
 
 from . import models, schemas
-from .services import ArtInstituteService
+from .services import art_institute_service
 
 
 class CRUDProject:
@@ -57,9 +57,8 @@ class CRUDProject:
         self, db: Session, *, obj_in: schemas.ProjectCreate, places_in: List[schemas.PlaceCreate]
     ) -> models.Project:
         # Validate places exist in external API
-        art_service = ArtInstituteService()
         for place_in in places_in:
-            if not art_service.validate_place_exists(place_in.external_api_id):
+            if not art_institute_service.validate_place_exists(place_in.external_api_id):
                 raise ValueError(f"Place with external_api_id {place_in.external_api_id} not found in Art Institute API")
 
         # Check project places limit
@@ -126,8 +125,7 @@ class CRUDPlace:
             raise ValueError("Place already exists in this project")
 
         # Validate place exists in external API
-        art_service = ArtInstituteService()
-        if not art_service.validate_place_exists(obj_in.external_api_id):
+        if not art_institute_service.validate_place_exists(obj_in.external_api_id):
             raise ValueError(f"Place with external_api_id {obj_in.external_api_id} not found in Art Institute API")
 
         # Check project places limit
