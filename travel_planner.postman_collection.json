@@ -1,0 +1,130 @@
+{
+    "info": {
+        "_postman_id": "1a2b3c4d-5e6f-7g8h-9i-0jklmnopqrst",
+        "name": "Travel Planner API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": "API for managing travel projects and places from the Art Institute of Chicago"
+    },
+    "item": [
+        {
+            "name": "Projects",
+            "item": [
+                {
+                    "name": "Get all projects",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/projects/",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "projects", ""]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create project",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Europe Trip 2024\",\n    \"description\": \"Backpacking through Europe\",\n    \"start_date\": \"2026-06-25\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/projects/",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "projects", ""]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Places",
+            "item": [
+                {
+                    "name": "Get places for project",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/projects/{project_id}/places/",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "projects", "{project_id}", "places", ""]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Add place to project",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"external_api_id\": \"12345\",\n    \"name\": \"The Starry Night\",\n    \"description\": \"Vincent van Gogh's famous painting\",\n    \"notes\": \"Must see when visiting Amsterdam\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/projects/{project_id}/places/",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "projects", "{project_id}", "places", ""]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Mark place as visited",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/projects/{project_id}/places/{place_id}/visit",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "projects", "{project_id}", "places", "{place_id}", "visit"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8000",
+            "type": "string"
+        }
+    ]
+}
