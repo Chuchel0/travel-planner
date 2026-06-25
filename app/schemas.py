@@ -9,16 +9,13 @@ class ProjectBase(BaseModel):
     description: Optional[str] = None
     start_date: Optional[datetime] = None
 
-
 class ProjectCreate(ProjectBase):
     pass
-
 
 class ProjectUpdate(BaseModel):
     name: Optional[str] = Field(None, min_length=1, max_length=100)
     description: Optional[str] = None
     start_date: Optional[datetime] = None
-
 
 class ProjectInDBBase(ProjectBase):
     id: int
@@ -27,7 +24,6 @@ class ProjectInDBBase(ProjectBase):
 
     class Config:
         orm_mode = True
-
 
 class Project(ProjectInDBBase):
     places: List["Place"] = []
@@ -41,15 +37,12 @@ class PlaceBase(BaseModel):
     notes: Optional[str] = None
     visited: bool = False
 
-
 class PlaceCreate(PlaceBase):
     pass
-
 
 class PlaceUpdate(BaseModel):
     notes: Optional[str] = None
     visited: Optional[bool] = None
-
 
 class PlaceInDBBase(PlaceBase):
     id: int
@@ -59,7 +52,6 @@ class PlaceInDBBase(PlaceBase):
 
     class Config:
         orm_mode = True
-
 
 class Place(PlaceInDBBase):
     pass
